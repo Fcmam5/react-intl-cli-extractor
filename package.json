@@ -1,0 +1,24 @@
+{
+  "name": "react-intl-cli-extractor",
+  "author": "Fortas Abdeldjalil (Fcmam5)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fcmam5/react-intl-cli-extractor.git"
+  },
+  "keywords": ["react", "react-intl", "i18n"],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fcmam5/react-intl-cli-extractor/issues"
+  },
+  "homepage": "https://github.com/Fcmam5/react-intl-cli-extractor#readme",
+  "dependencies": {
+    "globby": "8.0.1",
+    "lodash.camelcase": "4.3.0"
+  }
+}
