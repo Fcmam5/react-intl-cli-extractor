@@ -16,17 +16,30 @@ Glob("**/*.js", { ignore: '__tests__/**', cwd: sourceFolder }, function (er, fil
 
       // Add IDS to tags
       const newFileData = data.replace(FORMATTED_MESSAGE_REGEX, mtc => {
-        return mtc.replace(/defaultMessage\=\"(.*?)\"/, (a, b) => {
-          const id = `${filePath.replace('.js', '')}/${camelCase(b)}`;
-          result[id] = b;
-          return `id="${id}" ${a}`;
-        });
+        const matchComponentID = mtc.match(/id=\"(.*?)\"/);
+
+        if (matchComponentID) {
+          // If the component has an ID, preserve that ID
+          const id = matchComponentID[1];
+          result[id] = mtc.match(/defaultMessage\=\"(.*?)\"/)[1];
+          return mtc;
+
+        } else {
+          // Add an id="" attribute to the component
+          return mtc.replace(/defaultMessage\=\"(.*?)\"/, (a, b) => {
+            const id = `${filePath.replace('.js', '')}/${camelCase(b)}`;
+            result[id] = b;
+            return `id="${id}" ${a}`;
+          });
+        }
       });
 
       // Rewrite the original file
       fs.writeFileSync(absolutePath, newFileData, 'utf8');
     });
-    console.log(result);
+
+    console.log(JSON.stringify(result, null, "\t"));
+
     fs.writeFileSync(`${sourceFolder}/locales/source.json`, JSON.stringify(result, null, "\t"), 'utf8');
   }
 
