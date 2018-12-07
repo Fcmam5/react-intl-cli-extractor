@@ -21,7 +21,11 @@ Glob("**/*.js", { ignore: '__tests__/**', cwd: sourceFolder }, function (er, fil
         if (matchComponentID) {
           // If the component has an ID, preserve that ID
           const id = matchComponentID[1];
-          result[id] = mtc.match(/defaultMessage\=\"(.*?)\"/)[1];
+          const matchDefaultMessage = mtc.match(/defaultMessage\=\"(.*?)\"/);
+          // Component have only id="" without defaultMessage
+          if (matchDefaultMessage) {
+            result[id] = matchDefaultMessage[1];
+          }
           return mtc;
 
         } else {
