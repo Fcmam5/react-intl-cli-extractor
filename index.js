@@ -9,7 +9,7 @@ const distFile = `${sourceFolder}/locales/source.json`;
  * TODO: Fix: It supports only " or '
  */
 const FORMATTED_MESSAGE_REGEX = /<\s*FormattedMessage.*\/>/g;
-const FORMAT_MESSAGE_REGEX = /formatMessage\((.*?)\)\}/g;
+const FORMAT_MESSAGE_REGEX = /\s*formatMessage\((.*?)\)/g;
 const DEFAULT_MESSAGE_ATTRIBUTE = /defaultMessage\=\"(.*?)\"/;
 const DEFAULT_MESSAGE_PROPERTY = /defaultMessage\:\s*\'(.*?)\'/;
 const ID_ATTRIBUTE = /id=\"(.*?)\"/;
